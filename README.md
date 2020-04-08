@@ -1,4 +1,4 @@
 # This is a test. 
 
 
-[One](one.html) and [Two](_two.html)
+[One](dir/one.html) and [Two](dir/_two.html)
