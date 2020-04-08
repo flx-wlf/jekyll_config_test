@@ -1,2 +1,2 @@
 theme: jekyll-theme-merlot
-include: dir/
+include: ["_*.html"]
