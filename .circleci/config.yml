@@ -23,7 +23,7 @@ jobs:
             git config user.name "ci-build"
       - run:
           name: Deploy docs to gh-pages branch
-          command: npx gh-pages --dist . -a -m "CircleCI -> automated update [skip ci]"
+          command: npx gh-pages --dist -m "CircleCI -> automated update [skip ci]"
 
 workflows:
   version: 2
