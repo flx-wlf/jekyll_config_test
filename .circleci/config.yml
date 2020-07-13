@@ -1,0 +1,37 @@
+version: 2
+jobs:
+  docs-deploy:
+    filters:
+      branches:
+        only:
+          - master
+    docker:
+      - image: circleci/python
+    steps:
+      - checkout
+      - run:
+          name: "Install Node.js and npm"
+          command: |
+            curl -sL https://deb.nodesource.com/setup_13.x | sudo -E bash -
+            sudo apt-get install -qy build-essential
+            sudo apt-get install -qy nodejs
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install gh-pages
+            git config user.email "flx-wlf@users.noreply.github.com"
+            git config user.name "ci-build"
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: npx gh-pages --dist . -a -m "CircleCI -> automated update [skip ci]"
+
+workflows:
+  version: 2
+  build-n-deploy:
+    jobs:
+      - docs-deploy:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: master
